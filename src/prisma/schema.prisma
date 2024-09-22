@@ -53,7 +53,7 @@ model UserFollow {
   followerId  String
   following   User     @relation("following", fields: [followingId], references: [id])
   followingId String
-  followedAt  DateTime @default(now()) @db.Timestamptz(3)
+  followedAt  DateTime @default(now()) 
 
   @@id([followerId, followingId])
 }
@@ -65,8 +65,8 @@ model UserAvatar {
   caption   String
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String    @unique
-  createdAt DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt DateTime? @updatedAt @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) 
+  updatedAt DateTime? @updatedAt 
 }
 
 model BeerPost {
@@ -81,8 +81,8 @@ model BeerPost {
   breweryId     String
   style         BeerStyle      @relation(fields: [styleId], references: [id], onDelete: Cascade)
   styleId       String
-  createdAt     DateTime       @default(now()) @db.Timestamptz(3)
-  updatedAt     DateTime?      @updatedAt @db.Timestamptz(3)
+  createdAt     DateTime       @default(now()) 
+  updatedAt     DateTime?      @updatedAt 
   beerComments  BeerComment[]
   beerImages    BeerImage[]
   beerPostLikes BeerPostLike[]
@@ -94,8 +94,8 @@ model BeerPostLike {
   beerPostId String
   likedBy    User      @relation(fields: [likedById], references: [id], onDelete: Cascade)
   likedById  String
-  createdAt  DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt  DateTime? @updatedAt @db.Timestamptz(3)
+  createdAt  DateTime  @default(now()) 
+  updatedAt  DateTime? @updatedAt
 }
 
 model BreweryPostLike {
@@ -104,8 +104,8 @@ model BreweryPostLike {
   breweryPostId String
   likedBy       User        @relation(fields: [likedById], references: [id], onDelete: Cascade)
   likedById     String
-  createdAt     DateTime    @default(now()) @db.Timestamptz(3)
-  updatedAt     DateTime?   @updatedAt @db.Timestamptz(3)
+  createdAt     DateTime    @default(now()) 
+  updatedAt     DateTime?   @updatedAt 
 }
 
 model BeerComment {
@@ -116,16 +116,16 @@ model BeerComment {
   postedBy   User      @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById String
   content    String
-  createdAt  DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt  DateTime? @updatedAt @db.Timestamptz(3)
+  createdAt  DateTime  @default(now()) 
+  updatedAt  DateTime? @updatedAt 
 }
 
 model BeerStyle {
   id               String             @id @default(cuid())
   name             String
   description      String
-  createdAt        DateTime           @default(now()) @db.Timestamptz(3)
-  updatedAt        DateTime?          @updatedAt @db.Timestamptz(3)
+  createdAt        DateTime           @default(now()) 
+  updatedAt        DateTime?          @updatedAt 
   postedBy         User               @relation(fields: [postedById], references: [id], onDelete: Cascade)
   glassware        Glassware          @relation(fields: [glasswareId], references: [id], onDelete: Cascade)
   glasswareId      String
@@ -143,8 +143,8 @@ model BeerStyleLike {
   beerStyleId String
   likedBy     User      @relation(fields: [likedById], references: [id], onDelete: Cascade)
   likedById   String
-  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime? @updatedAt @db.Timestamptz(3)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 }
 
 model BeerStyleComment {
@@ -155,16 +155,16 @@ model BeerStyleComment {
   postedBy    User      @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById  String
   content     String
-  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime? @updatedAt @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) 
+  updatedAt   DateTime? @updatedAt 
 }
 
 model Glassware {
   id          String      @id @default(cuid())
   name        String
   description String
-  createdAt   DateTime    @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime?   @updatedAt @db.Timestamptz(3)
+  createdAt   DateTime    @default(now()) 
+  updatedAt   DateTime?   @updatedAt 
   postedBy    User        @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById  String
   beerStyle   BeerStyle[]
@@ -180,8 +180,8 @@ model BreweryLocation {
   postedBy        User         @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById      String
   breweryPost     BreweryPost?
-  createdAt       DateTime     @default(now()) @db.Timestamptz(3)
-  updatedAt       DateTime?    @updatedAt @db.Timestamptz(3)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime?    @updatedAt
 }
 
 model BreweryPost {
@@ -191,14 +191,14 @@ model BreweryPost {
   locationId      String            @unique
   beers           BeerPost[]
   description     String
-  createdAt       DateTime          @default(now()) @db.Timestamptz(3)
-  updatedAt       DateTime?         @updatedAt @db.Timestamptz(3)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime?         @updatedAt 
   postedBy        User              @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById      String
   breweryComments BreweryComment[]
   breweryImages   BreweryImage[]
   breweryPostLike BreweryPostLike[]
-  dateEstablished DateTime          @default(now()) @db.Timestamptz(3)
+  dateEstablished DateTime          @default(now()) 
 }
 
 model BreweryComment {
@@ -209,8 +209,8 @@ model BreweryComment {
   postedBy      User        @relation(fields: [postedById], references: [id], onDelete: Cascade)
   postedById    String
   content       String
-  createdAt     DateTime    @default(now()) @db.Timestamptz(3)
-  updatedAt     DateTime?   @updatedAt @db.Timestamptz(3)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime?   @updatedAt 
 }
 
 model BeerImage {
